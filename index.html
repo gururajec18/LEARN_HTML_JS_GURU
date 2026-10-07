@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML & JavaScript Coding Studio | Developed by Gururaj Surampalli</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ================= TOP APP HEADER ================= -->
+  <header class="app-header">
+    <div class="header-left">
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle Navigation">☰</button>
+      <div class="brand-icon">⚡</div>
+      <div class="brand-info">
+        <h1>HTML &amp; JS Studio</h1>
+        <span class="sub">Interactive Learning &amp; Coding Playground</span>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search 15+ examples, HTML tags, JS concepts...">
+    </div>
+
+    <!-- Author Badge -->
+    <div class="header-right">
+      <div class="author-badge">
+        <span class="author-avatar">GS</span>
+        <span>Developed by <strong>Gururaj Surampalli</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN BODY LAYOUT ================= -->
+  <div class="app-body">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside id="sidebar" class="sidebar">
+      <!-- Navigation Tabs -->
+      <nav class="sidebar-tabs">
+        <button class="sidebar-tab-btn active" data-category="examples">Examples</button>
+        <button class="sidebar-tab-btn" data-category="html">HTML</button>
+        <button class="sidebar-tab-btn" data-category="js">JavaScript</button>
+        <button class="sidebar-tab-btn" data-category="projects">Projects</button>
+      </nav>
+
+      <!-- Dynamic Navigation Items -->
+      <div id="sidebarContent" class="sidebar-content">
+        <!-- Rendered via app.js -->
+      </div>
+    </aside>
+
+    <!-- ================= WORKSPACE ================= -->
+    <main class="workspace">
+      <!-- Workspace Header -->
+      <div class="workspace-header">
+        <div class="current-info">
+          <span id="currentTitle" class="current-title">HTML Document Structure</span>
+          <span id="currentCategory" class="current-category">HTML Basics</span>
+        </div>
+
+        <div class="header-actions">
+          <button id="btnOpenLesson" class="btn btn-outline" style="display:none;">📖 Read Concept</button>
+        </div>
+      </div>
+
+      <!-- Workspace Panes: Split Editor & Preview -->
+      <div class="workspace-panes">
+
+        <!-- ================= CODE EDITOR PANE ================= -->
+        <section class="editor-pane">
+          <!-- Editor Tabs -->
+          <div class="editor-toolbar">
+            <div class="editor-tabs">
+              <button class="tab-btn active" data-tab="html">
+                <span>&lt;/&gt;</span> HTML
+              </button>
+              <button class="tab-btn" data-tab="css">
+                <span>🎨</span> CSS
+              </button>
+              <button class="tab-btn" data-tab="js">
+                <span>⚡</span> JavaScript
+              </button>
+            </div>
+
+            <div class="editor-actions-top">
+              <label class="auto-run-toggle">
+                <input type="checkbox" id="chkAutoRun">
+                <span>Auto-run</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Code Containers with Line Numbers -->
+          <div class="editor-area">
+            <!-- HTML Editor -->
+            <div id="htmlContainer" class="editor-container active">
+              <div id="htmlLines" class="line-numbers">1</div>
+              <textarea id="htmlCode" class="code-textarea" spellcheck="false" placeholder="Write HTML here..."></textarea>
+            </div>
+
+            <!-- CSS Editor -->
+            <div id="cssContainer" class="editor-container">
+              <div id="cssLines" class="line-numbers">1</div>
+              <textarea id="cssCode" class="code-textarea" spellcheck="false" placeholder="Write CSS styles here..."></textarea>
+            </div>
+
+            <!-- JS Editor -->
+            <div id="jsContainer" class="editor-container">
+              <div id="jsLines" class="line-numbers">1</div>
+              <textarea id="jsCode" class="code-textarea" spellcheck="false" placeholder="Write JavaScript logic here..."></textarea>
+            </div>
+          </div>
+
+          <!-- Editor Footer Action Bar -->
+          <footer class="editor-footer">
+            <div class="editor-footer-left">
+              <button id="btnRun" class="btn btn-run" title="Execute Code (Ctrl + Enter)">
+                <span>▶</span> Run Code
+              </button>
+              <button id="btnReset" class="btn btn-outline" title="Revert to initial template">
+                <span>↺</span> Reset
+              </button>
+              <button id="btnClear" class="btn btn-danger-outline" title="Clear all code">
+                <span>🗑</span> Clear
+              </button>
+            </div>
+
+            <div class="editor-footer-right">
+              <button id="btnCopy" class="btn btn-outline" title="Copy code of active tab">
+                <span>📋</span> Copy
+              </button>
+              <button id="btnDownload" class="btn btn-outline" title="Export as standalone HTML file">
+                <span>⬇</span> Export .html
+              </button>
+            </div>
+          </footer>
+        </section>
+
+        <!-- ================= PREVIEW & CONSOLE PANE ================= -->
+        <section class="preview-pane">
+          <!-- Preview / Console Tabs -->
+          <div class="preview-toolbar">
+            <div class="preview-tabs">
+              <button class="tab-btn active" data-view="preview">
+                <span>🖥</span> Live Preview
+              </button>
+              <button class="tab-btn" data-view="console">
+                <span>💻</span> Console <span id="consoleBadge" class="badge-tag" style="display:none;">0</span>
+              </button>
+            </div>
+
+            <div class="preview-actions">
+              <button id="btnFullscreen" class="btn btn-outline" title="View Fullscreen">⛶ Fullscreen</button>
+            </div>
+          </div>
+
+          <!-- Live Iframe Preview Area -->
+          <div id="previewContainer" class="preview-frame-container">
+            <iframe id="previewIframe" title="Live Sandboxed Preview" sandbox="allow-scripts allow-modals"></iframe>
+          </div>
+
+          <!-- Virtual Devtools Console -->
+          <div id="consoleContainer" class="console-container">
+            <div class="console-header">
+              <span>Interactive JavaScript Execution Logs</span>
+              <button id="btnClearConsole" class="btn btn-outline" style="padding: 2px 8px; font-size: 0.72rem;">Clear Logs</button>
+            </div>
+            <div id="consoleLogs" class="console-logs">
+              <!-- Logs populated via postMessage -->
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ================= LESSON / CONCEPT MODAL ================= -->
+  <div id="lessonModalBackdrop" class="modal-backdrop">
+    <div class="lesson-modal">
+      <header class="lesson-modal-header">
+        <h3 id="modalTitle">Concept Notes</h3>
+        <button id="btnCloseModal" class="btn-close-modal">&times;</button>
+      </header>
+      <div id="modalBody" class="lesson-modal-body">
+        <!-- Content inserted dynamically -->
+      </div>
+      <footer class="lesson-modal-footer">
+        <span style="font-size: 0.8rem; color: #94a3b8;">Developed by Gururaj Surampalli</span>
+        <button id="btnModalLoadExample" class="btn btn-run" style="display: none;">🚀 Open Practice Example</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION ================= -->
+  <div id="toast" class="toast">
+    <span>💡</span>
+    <span id="toastMsg">Action executed!</span>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
